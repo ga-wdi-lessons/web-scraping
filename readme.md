@@ -6,9 +6,6 @@
 - Explain the necessity of web scraping in place of using an API
 - Use CSS selectors to target different elements on an HTML page
 - Use BeautifulSoup to fetch an HTML page and parse its contents
-- Download images from a webpage
-- Access content behind an authentication form
-- Retrieve paginated content
 
 ## Data Science and the Web
 
@@ -91,14 +88,6 @@ APIs are published everywhere. Chances are good that most major content sources 
 
 Okay... try the [Programmable Web API Directory](http://www.programmableweb.com/apis/directory) or the [Public APIs Directory](http://www.publicapis.com/).
 
-## I do
-
-OMDB API
-
-## You do
-
-Stocks API
-
 ## Intro to Web Scraping
 
 Sometimes, there is information available on the web for which no public API is available.
@@ -109,74 +98,9 @@ https://quickleft.com/blog/is-web-scraping-ethical/
 
 I personally have taken on freelance gigs to extract emails from real estate agent websites, and rental property prices.
 
-## urllib
-
-The urllib module allows us to download resources from the web
-
-```py
-#!/usr/bin/env python
-
-import urllib
-html = urllib.urlopen("http://jshawl.com/python-playground")
-print html.read()
-```
-
-### Downloading Images
-
-```py
-urllib.urlretrieve("http://jshawl.com/python-playground/python.gif","python.gif")
-```
-
-```
-open python.gif
-```
-
-### Extract Email Addresses
-
-```py
-import re
-
-html = urllib.urlopen("http://jshawl.com/python-playground").read()
-print '@' in html # true if there's at least one @ symbol
-```
-
-```py
-print re.findall('[\w]+@[\w.]+', html)
-```
-
-### Logging into a website
-
-```py
-import urllib
-from cookielib import CookieJar # store cookies and logged-in info
-import urllib2
-
-cj = CookieJar()
-opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
-```
-
-What are the name of the inputs?
-
-```py
-formValues = {
-  "username":"user",
-  "password":"pass"
-}
-data = urllib.urlencode(formValues)
-response = opener.open("http://jshawl.com/python-playground/login.php",data)
-print response.read()
-```
-
-```py
-secure = opener.open("http://jshawl.com/python-playground/protected2.php")
-print secure.read()
-```
-
 ## BeautifulSoup
 
-Using the `urllib` and `re` modules works, but we're treating the returned HTML
-as an unstructured string. We'll use a module called beatiful soup to retrieve
-structured markup.
+We'll use a module called beatiful soup to retrieve structured markup.
 
 ## We do Install Beautiful Soup
 
